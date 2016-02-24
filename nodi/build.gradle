@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "yuki.m.android.dagger2sample"
+        applicationId "yuki.m.android.nodi"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
