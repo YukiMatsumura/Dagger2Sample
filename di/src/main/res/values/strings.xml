@@ -1,4 +1,4 @@
 <resources>
-  <string name="app_name">DI</string>
+  <string name="app_name">Dagger2Sample</string>
   <string name="action_settings">Settings</string>
 </resources>

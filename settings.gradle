@@ -1,1 +1,1 @@
-include ':nodi', ':di'
+include ':di'

@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "yuki.m.android.di"
+        applicationId "yuki.m.android.dagger2sample"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
@@ -17,6 +18,15 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        encoding "UTF-8"
+
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
     }
 }
 
@@ -29,4 +39,33 @@ dependencies {
     // Dagger2
     apt 'com.google.dagger:dagger-compiler:2.0.2'
     compile 'com.google.dagger:dagger:2.0.2'
+
+    compile 'io.reactivex:rxandroid:1.1.0'
+    compile 'io.reactivex:rxjava:1.1.1'
+
+    compile 'com.jakewharton:butterknife:7.0.1'
+
+    compile 'com.squareup.okhttp3:okhttp:3.1.2'
+    compile 'com.squareup.retrofit:retrofit:2.0.0-beta1'
+    compile 'com.squareup.retrofit:adapter-rxjava:2.0.0-beta1'
+    compile 'com.squareup.retrofit:converter-gson:2.0.0-beta1'
+
+    compile 'com.jakewharton.threetenabp:threetenabp:1.0.3'
+
+    apt 'com.github.gfx.android.orma:orma-processor:2.0.6'
+    compile 'com.github.gfx.android.orma:orma:2.0.6'
+
+    apt 'com.github.gfx.android.orma:orma-processor:1.2.2'
+    compile 'com.github.gfx.android.orma:orma:1.2.2'
+
+    // Unit test framework.
+    testCompile 'junit:junit:4.12'
+    testCompile "org.robolectric:robolectric:3.0"
+
+    // Mock
+    testCompile 'org.mockito:mockito-core:1.10.19'
+    testCompile 'org.hamcrest:hamcrest-library:1.3'
+
+    // Mock Web Server
+    testCompile 'com.squareup.okhttp3:mockwebserver:3.1.2'
 }
