@@ -1,1 +1,1 @@
-include ':di'
+include ':subcomponent'
