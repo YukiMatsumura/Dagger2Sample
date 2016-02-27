@@ -10,6 +10,6 @@ import yuki.android.subcomponent.scope.ChildScope;
 public class ChildScopeClass {
   @Inject
   public ChildScopeClass() {
-    Log.i("yuki", "ChildScopeClass created. hash=" + hashCode());
+    Log.i("yuki", "new ChildScopeClass() " + hashCode());
   }
 }

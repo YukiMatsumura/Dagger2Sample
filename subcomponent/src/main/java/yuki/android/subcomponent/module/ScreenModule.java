@@ -16,6 +16,7 @@ public class ScreenModule {
   private Activity activity;
 
   public ScreenModule(Activity activity) {
+    Log.i("yuki", "new ScreenModule(activity) arg.activity=" + activity.hashCode());
     this.activity = activity;
   }
 
@@ -25,8 +26,8 @@ public class ScreenModule {
    */
   @Provides
   @ChildScope
-  public LocalTime localTime(MyApp app) {
-    Log.i("yuki", "MyApp " + app);
+  public LocalTime localTime(MyApp myApp) {
+    Log.i("yuki", "provide localTime arg.myApp=" + myApp.hashCode());
     return LocalTime.now();
   }
 }
