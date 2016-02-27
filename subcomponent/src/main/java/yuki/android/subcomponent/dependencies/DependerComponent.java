@@ -8,5 +8,9 @@ import yuki.android.subcomponent.scope.ChildScope;
 @ChildScope
 @Component(dependencies = DependeeComponent.class, modules = ScreenModule.class)
 public interface DependerComponent {
-  void inject(MainActivity activity);
+    /*
+     * 依存される(dependenciesで指定する)コンポーネント.
+     */
+
+    void inject(MainActivity activity);
 }

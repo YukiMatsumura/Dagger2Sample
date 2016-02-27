@@ -8,21 +8,23 @@ import yuki.android.subcomponent.scope.ChildScope;
 @ChildScope
 @Subcomponent(modules = ScreenModule.class)
 public interface ChildComponent {
-  /*
-   * Scope
-   *   SubComponentはParentComponentのScopeと異なるものを定義する必要がある.
-   *   Scopeを管理するScopeProviderをParentComponent, ChildComponentで混同しない
-   *   ためである.
-   *
-   *   Scopeはそれ自身が大小(包含)関係を明示するものではなく,
-   *   ParentComponent, ChildComponentの関係性がScopeの範囲を決めるものである.
-   *
-   *   ChildComponentのScopeはParentComponentのScopeより短命となる.
-   *   これはChildComponentがParentComponentにより生成されるためである.
-   */
+    /* 
+     * 子コンポーネント
+     * 
+     * Scope
+     *   SubComponentはParentComponentのScopeと異なる必要がある.
+     *   Scopeを管理するScopeProviderが依存オブジェクトをどのScopeに割り当てるべきか
+     *   明確にする必要がある.
+     *
+     *   Scope自身が大小(包含)関係を明示する術はなく,
+     *   ParentComponent, ChildComponentの関係性がScopeの階層(範囲)を決める.
+     *
+     *   ChildComponentのScopeはParentComponentのScopeより短命となる.
+     *   これはChildComponentがParentComponentにより生成されるためである.
+     */
 
-  /*
-   * この宣言はMyAppクラスをApplicationScopeに属させる
-   */
-  void inject(MainActivity activity);
+    /*
+     * この宣言はMyAppクラスをApplicationScopeに属させる
+     */
+    void inject(MainActivity activity);
 }

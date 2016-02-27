@@ -9,21 +9,28 @@ import yuki.android.subcomponent.scope.ParentScope;
 @ParentScope
 @Component(modules = {DatabaseModule.class})
 public interface DependeeComponent {
-  /*
-   * 依存される(dependenciesで指定される)コンポーネント.
-   *
-   * Point
-   *   DependeeComponentはDependerComponentが要求する依存オブジェクトを
-   *   Exportして依存性を充足される必要がある.
-   *   dependenciesによる関連では依存コンポーネントの情報が現れず暗黙的な関連になる.
-   *
-   * SubComponent vs. dependencies
-   *   ParentComponentクラスのコメントを参照.
-   */
+    /*
+     * 依存される(dependenciesで指定される)コンポーネント.
+     *
+     * Point
+     *   ChildScopeのDependeeComponentが異なるスコープであるParentScopeの
+     *   オブジェクトを要求する時, DependerComponentはその依存性を充足されるために
+     *   当該オブジェクトをExportする必要がある. 
+     *   ChildScopeはexportされたメソッドを経由して異なるScopeのオブジェクトを取得する.
+     *   
+     *   dependenciesによる関係性は対象Componentの情報がコード上現れず暗黙的な関連になる.
+     *   DependerComponentが別のParentScopeオブジェクトを求める時, DependeeComponent
+     *   は不足した依存性を充足させる変更が必要になる. 
+     *
+     * SubComponent vs. dependencies
+     *   ParentComponentクラスのコメントを参照.
+     */
 
-  ParentScopeClass parentScopeClass();
+    // DependerComponentが要求するParentScopeオブジェクトをexportする
+    ParentScopeClass parentScopeClass();
 
-  MyApp myApp();
+    // DependerComponentが要求するParentScopeオブジェクトをexportする
+    MyApp myApp();
 
-  void inject(MyApp myApp);
+    void inject(MyApp myApp);
 }
