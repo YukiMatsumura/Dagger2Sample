@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i("yuki", "ChildComponent build ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓");
         // newChildComponentにより, 新たなChildComponent/ChildScopeのgraphが生成される.
         // ただし, 親にあたるParentScopeのオブジェクト群は引き継がれる.
-        childComponent = ((MyApp) getApplication()).getParentComponent()
+        childComponent = app.getParentComponent()
                 .newChildComponent(new ScreenModule(this));
         childComponent.inject(this);
         Log.i("yuki", "ChildComponent build " + childComponent.hashCode());
