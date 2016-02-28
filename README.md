@@ -5,19 +5,19 @@
 
 ### はじめに
 
-Dagger2(google/dagger)でComponentの関連性を指定する[@Subcomponent](http://google.github.io/dagger/api/2.0/dagger/Subcomponent.html)と[component dependencies](http://google.github.io/dagger/api/2.0/dagger/Component.html#component-dependencies)についてまとめる. 
+Dagger2(google/dagger)でComponentの関連性を指定する[@Subcomponent](http://google.github.io/dagger/api/2.0/dagger/Subcomponent.html)と[dependencies](http://google.github.io/dagger/api/2.0/dagger/Component.html#component-dependencies)についてまとめる. 
 
 Dagger2では依存オブジェクト群を"Component"と呼ばれる単位で管理する. 
 このComponentには他Componentと従属関係を築く方法と, 他Componentと使用関係を築く方法の2種類が用意されている. 
 さらにDagger2では"Scope"の概念も加わり, このあたりの仕様理解を難しくしている. 
 
-Subcomponentやcomponent dependenciesを使わなくてもDagger2はDI Frameworkとして十分役に立つ. 
-ただ, Subcomponentとcomponent dependenciesの理解はDagger2の依存性充足の仕組みを理解するのに大いに役立つため, 知っておくことをお勧めする. 
+Subcomponentやdependenciesを使わなくてもDagger2はDI Frameworkとして十分役に立つ. 
+ただ, Subcomponentとdependenciesの理解はDagger2の依存性充足の仕組みを理解するのに大いに役立つため, 知っておくことをお勧めする. 
 
 > **NOTE:**
 > 本稿はDagger2 Ver.2.0.2をベースに作成している. 
 > Dagger2 Ver.2.1からはややこしい Subcomponent周りにも改良が加えられる様子(@Component.Builder新設etc.)がある. 
-> そのため, 本稿ではSubcomponentとcomponent dependenciesの基本に焦点を絞り, その他Tipsなどは非推奨化が見えているのでここでは触れないことにする. 
+> そのため, 本稿ではSubcomponentとdependenciesの基本に焦点を絞り, その他Tipsなどは非推奨化が見えているのでここでは触れないことにする. 
 
 ### 基本的な構成
 
@@ -36,10 +36,10 @@ Component graph
 : Dagger2に管理される依存関係の対象となるオブジェクト. 他オブジェクトに必要とされているオブジェクトであったり, 他オブジェクトを要求するオブジェクトであったりする. 
 
 [Module](http://google.github.io/dagger/api/2.0/dagger/Module.html)  
-: 依存オブジェクトのファクトリにあたるクラス. 依存性の要求ができないライブラリやシステムにライフサイクル制御されているクラス(Activity等), 生成に構築作業が必要なオブジェクトの場合はModuleでファクトリメソッドを記述する. 
+: 依存オブジェクトのファクトリにあたるクラス. 依存性の要求ができないライブラリやシステムにライフサイクル制御されているクラス(Activity等), 生成に構築作業が必要なオブジェクトの場合はModuleでファクトリメソッドを記述する. 
 
 Scope  
-: Dagger2では依存オブジェクトとComponent graphのライフサイクルを決めるアノテーションとしてScopeの概念を持つ. Dagger2では依存性を充足させる度に依存オブジェクトを生成するのか, あるいはComponent graph内で一度生成したインスタンスを使い回すのかをScopeで制御できる仕組みを持つ. 
+: Dagger2では依存オブジェクトとComponent graphのライフサイクルを決めるアノテーションとしてScopeの概念を持つ. Dagger2では依存性を充足させる度に依存オブジェクトを生成するのか, あるいはComponent graph内で一度生成したインスタンスを使い回すのかをScopeで制御できる仕組みを持つ. 
 
 [Component](http://google.github.io/dagger/api/2.0/dagger/Component.html)    
 : Component graphの単位. また, Componentは依存オブジェクトとDagger2, あるいは他Componentとの橋渡しの役割を持つ. 
@@ -63,7 +63,7 @@ Dagger2ではComponentがScopeを持つとScopedProviderというクラスによ
 難しいことはさておき, 依存オブジェクト群はScopeによって管理されているということだ. 
 
 ただ, これだけを見るとScopeの価値がわかり辛い. Scopeをやめて直接Componentが依存オブジェクトを管理しても良いように思える. 
-そこでSubcomponentとcomponent dependenciesの登場だ. 
+そこでSubcomponentとdependenciesの登場だ. 
 
 ### Subcomponent
 
@@ -76,7 +76,7 @@ ComponentやScopeは階層化できる.
 public interface ChildComponent {
 ``` 
 
-親にあたるComponentは子Componentを作成するAbstract factory methodを親側のComponentで宣言する. 
+親にあたるComponentは子Componentを作成するAbstract factory methodを宣言する. 
 
 ```java
 @Component(...)
@@ -312,7 +312,7 @@ dependenciesは他Componentの依存性充足を手軽に拝借できるとこ�
 ### 補足
 
 Dagger2ではScopeの定義が必須ではない. Scopeでアノテートしない場合, インスタンスはScopedProviderではなくModuleのファクトリで管理される. 
-本稿ではSubComponentとcomponent dependenciesに焦点を絞り, 説明をわかりやすくするためにあえてScopeを宣言しないケースについては除外した. 
+本稿ではSubComponentとdependenciesに焦点を絞り, 説明をわかりやすくするためにあえてScopeを宣言しないケースについては除外した. 
 SubComponentやdependenciesでScopeを宣言しないProviderを作成した場合, 通常通りそのComponent/Moduleにファクトリがつく. 
 
 以上. 
