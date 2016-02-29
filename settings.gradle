@@ -1,1 +1,1 @@
-include ':subcomponent'
+include ':subcomponent', ':app'
