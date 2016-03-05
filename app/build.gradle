@@ -75,3 +75,23 @@ dependencies {
     // Optional -- UI testing with Espresso
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
 }
+
+apply plugin: 'devicefarm'
+
+devicefarm {
+
+    projectName "test" // required: Must already exists.
+
+    devicePool "Top Devices" // optional: Defaults to "Top Devices"
+
+    def amazonDeviceFarmGradleFile = rootProject.file('secret/awsdevicefarm.gradle')
+    if (amazonDeviceFarmGradleFile.exists()) {
+        apply from: amazonDeviceFarmGradleFile, to: devicefarm
+    } else {
+        println "\n\t!! NOT FOUND AMAZON DEVICE FARM AUTHENTICATION SETTING. SIGNING FAKE KEY !!\n"
+        authentication {
+            accessKey "aws-iam-user-accesskey"
+            secretKey "aws-iam-user-secretkey"
+        }
+    }
+}

@@ -3,6 +3,7 @@
 buildscript {
     repositories {
         jcenter()
+        mavenLocal()
         mavenCentral()
     }
     dependencies {
@@ -10,6 +11,8 @@ buildscript {
 
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
         classpath 'me.tatarka:gradle-retrolambda:3.3.0-beta4'
+
+        classpath 'com.amazonaws:aws-devicefarm-gradle-plugin:1.2'
     }
 }
 
