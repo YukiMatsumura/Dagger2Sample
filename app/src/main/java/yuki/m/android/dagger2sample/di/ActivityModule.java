@@ -14,23 +14,23 @@ import rx.schedulers.Schedulers;
 @Module
 public class ActivityModule {
 
-  @Provides
-  @ActivityScope
-  @Named("executeScheduler")
-  public Scheduler provideExecutionScheduler() {
-    return Schedulers.newThread();
-  }
+    @Provides
+    @ActivityScope
+    @Named("executeScheduler")
+    public Scheduler provideExecutionScheduler() {
+        return Schedulers.newThread();
+    }
 
-  @Provides
-  @ActivityScope
-  @Named("postScheduler")
-  public Scheduler providePostScheduler() {
-    return AndroidSchedulers.mainThread();
-  }
+    @Provides
+    @ActivityScope
+    @Named("postScheduler")
+    public Scheduler providePostScheduler() {
+        return AndroidSchedulers.mainThread();
+    }
 
-  @Provides
-  @ActivityScope
-  public LocalTime provideLocalTime() {
-    return LocalTime.now();
-  }
+    @Provides
+    @ActivityScope
+    public LocalTime provideLocalTime() {
+        return LocalTime.now();
+    }
 }

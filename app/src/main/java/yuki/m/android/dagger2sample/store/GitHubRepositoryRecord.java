@@ -8,19 +8,20 @@ import com.github.gfx.android.orma.annotation.Table;
 @Table("github_repository")
 public class GitHubRepositoryRecord {
 
-  @PrimaryKey
-  public final long id;
+    @PrimaryKey
+    public final long id;
 
-  @Column
-  public final String name;
+    @Column
+    public final String name;
 
-  @Setter
-  public GitHubRepositoryRecord(long id, String name) {
-    this.id = id;
-    this.name = name;
-  }
+    @Setter
+    public GitHubRepositoryRecord(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
-  @Override public String toString() {
-    return String.format("RepositoryTable{id:%s, name:%s}", id, name);
-  }
+    @Override
+    public String toString() {
+        return String.format("RepositoryTable{id:%s, name:%s}", id, name);
+    }
 }

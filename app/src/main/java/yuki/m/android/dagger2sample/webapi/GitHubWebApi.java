@@ -7,6 +7,6 @@ import retrofit.http.GET;
 import retrofit.http.Path;
 
 public interface GitHubWebApi {
-  @GET("/users/{user}/repos")
-  Call<List<GitHubApiResponse.Repository>> getRepositories(@Path("user") String userName);
+    @GET("/users/{user}/repos")
+    Call<List<GitHubApiResponse.Repository>> getRepositories(@Path("user") String userName);
 }

@@ -1,7 +1,6 @@
 package yuki.m.android.dagger2sample;
 
 import android.os.Bundle;
-import android.support.annotation.VisibleForTesting;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -23,39 +22,40 @@ import yuki.m.android.dagger2sample.domain.GitHub;
 
 public class RepositoryViewerActivity extends AppCompatActivity {
 
-  private ActivityComponent activityComponent;
+    private ActivityComponent activityComponent;
 
-  @Inject
-  Lazy<GitHub> github;
+    @Inject
+    Lazy<GitHub> github;
 
-  @Inject Provider<LocalTime> localTimeProvider;
+    @Inject
+    Provider<LocalTime> localTimeProvider;
 
-  @Bind(R.id.toolbar)
-  Toolbar toolbar;
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
 
-  @Bind(R.id.fab)
-  FloatingActionButton fab;
+    @Bind(R.id.fab)
+    FloatingActionButton fab;
 
-  @Bind(R.id.text)
-  TextView text;
+    @Bind(R.id.text)
+    TextView text;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-    ButterKnife.bind(this);
-    setSupportActionBar(toolbar);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+        setSupportActionBar(toolbar);
 
-    activityComponent = ((MyApp) getApplication()).getComponent()
-        .newActivityComponent(new ActivityModule());
-    activityComponent.inject(this);
-  }
+        activityComponent = ((MyApp) getApplication()).getComponent()
+                .newActivityComponent(new ActivityModule());
+        activityComponent.inject(this);
+    }
 
-  @OnClick(R.id.fab)
-  public void onFabClick(FloatingActionButton fab) {
-    github.get().findRepository(
-        find -> text.setText(localTimeProvider.get() + "\n" + find.toString()),
-        error -> Toast.makeText(this, error.getMessage(), Toast.LENGTH_LONG).show()
-    );
-  }
+    @OnClick(R.id.fab)
+    public void onFabClick(FloatingActionButton fab) {
+        github.get().findRepository(
+                find -> text.setText(localTimeProvider.get() + "\n" + find.toString()),
+                error -> Toast.makeText(this, error.getMessage(), Toast.LENGTH_LONG).show()
+        );
+    }
 }

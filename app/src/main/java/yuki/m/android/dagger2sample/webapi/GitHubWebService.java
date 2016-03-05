@@ -11,23 +11,23 @@ import yuki.m.android.dagger2sample.domain.GitHubRepository;
 @ApplicationScope
 public class GitHubWebService {
 
-  private GitHubWebApi webApi;
+    private GitHubWebApi webApi;
 
-  private ResponseMapper responseMapper = new ResponseMapper();
+    private ResponseMapper responseMapper = new ResponseMapper();
 
-  @Inject
-  public GitHubWebService(GitHubWebApi webApi) {
-    this.webApi = webApi;
-  }
-
-  public List<GitHubRepository> requestGitHubRepository(String userName) {
-    try {
-      List<GitHubApiResponse.Repository> response
-          = webApi.getRepositories(userName).execute().body();
-      return responseMapper.transform(response);
-
-    } catch (IOException error) {
-      throw new RuntimeException(error);
+    @Inject
+    public GitHubWebService(GitHubWebApi webApi) {
+        this.webApi = webApi;
     }
-  }
+
+    public List<GitHubRepository> requestGitHubRepository(String userName) {
+        try {
+            List<GitHubApiResponse.Repository> response
+                    = webApi.getRepositories(userName).execute().body();
+            return responseMapper.transform(response);
+
+        } catch (IOException error) {
+            throw new RuntimeException(error);
+        }
+    }
 }

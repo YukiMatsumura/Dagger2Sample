@@ -6,7 +6,7 @@ import yuki.m.android.dagger2sample.domain.GitHubRepository;
 
 public interface GitHubStore {
 
-  List<GitHubRepository> queryRepository();
+    List<GitHubRepository> queryRepository();
 
-  boolean updateRepository(List<GitHubRepository> repositories);
+    boolean updateRepository(List<GitHubRepository> repositories);
 }

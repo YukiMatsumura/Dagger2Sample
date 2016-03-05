@@ -11,22 +11,23 @@ import yuki.m.android.dagger2sample.di.DaggerApplicationComponent;
 
 public class MyApp extends Application {
 
-  private ApplicationComponent component;
+    private ApplicationComponent component;
 
-  @Override public void onCreate() {
-    super.onCreate();
-    AndroidThreeTen.init(this);
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        AndroidThreeTen.init(this);
 
-    component = DaggerApplicationComponent.builder()
-        .applicationModule(new ApplicationModule(this)).build();
-  }
+        component = DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(this)).build();
+    }
 
-  public ApplicationComponent getComponent() {
-    return component;
-  }
+    public ApplicationComponent getComponent() {
+        return component;
+    }
 
-  @VisibleForTesting
-  public void setComponent(ApplicationComponent applicationComponent) {
-    this.component = applicationComponent;
-  }
+    @VisibleForTesting
+    public void setComponent(ApplicationComponent applicationComponent) {
+        this.component = applicationComponent;
+    }
 }
