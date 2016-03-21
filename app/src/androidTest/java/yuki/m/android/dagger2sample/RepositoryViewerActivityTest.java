@@ -34,6 +34,7 @@ public class RepositoryViewerActivityTest {
   @Test
   public void GitHubレポジトリ情報の取得_商用版() throws Exception {
     onView(ViewMatchers.withId(R.id.fab)).perform(click());
+    Thread.sleep(3000);  // for Presentation
   }
 
   @Test
@@ -44,5 +45,6 @@ public class RepositoryViewerActivityTest {
             .applicationModule(new ApplicationTestModule(app))
             .build());
     onView(ViewMatchers.withId(R.id.fab)).perform(click());
+    Thread.sleep(3000);  // for Presentation
   }
 }
