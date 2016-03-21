@@ -35,5 +35,11 @@ build/
 #NDK
 obj/
 
+# wercker build files
+_builds/
+_cache/
+_projects/
+_steps/
+
 # FIXME: 以下のファイルはgit管理対象外. 実運用時はコメントアウトを外すこと
 /secret
